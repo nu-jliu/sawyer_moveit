@@ -11,3 +11,10 @@ controller_list:
       - right_j4
       - right_j5
       - right_j6
+
+  - name: /robot/end_effector/right
+    action_ns: gripper_action
+    type: GripperCommand
+    default: true
+    joints:
+      - right_gripper_l_finger_joint
