@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+  <arg name="robot" default="sawyer"/>
   <arg name="config" default="true"/>
   <arg name="rviz_config" default="$(find sawyer_moveit_config)/launch/moveit.rviz" />
 
@@ -25,6 +26,7 @@
     <arg name="electric_gripper" value="$(arg electric_gripper)"/>
     <arg name="tip_name" value="$(arg tip_name)"/>
     <arg name="controller_box" value="$(arg controller_box)"/>
+    <arg name="robot" value="$(arg robot)"/>
   </include>
 
   <arg name="kinect" default="false" />

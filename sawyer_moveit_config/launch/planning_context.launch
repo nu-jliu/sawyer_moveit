@@ -10,14 +10,12 @@
   <arg name="load_robot_description" default="false"/>
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
+  <!-- The name of the robot to plan -->
+  <arg name="robot" default="sawyer"/>
   <!-- Load universal robot description format (URDF) FIXME when composable URDF -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find sawyer_description)/urdf/sawyer.urdf"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find sawyer_description)/urdf/$(arg robot).urdf"/>
   <!-- The semantic description that corresponds to the URDF -->
-  <param name="robot_description_semantic"
-      command="$(find xacro)/xacro --inorder $(find sawyer_moveit_config)/srdf/sawyer.srdf.xacro
-          electric_gripper:=$(arg electric_gripper)
-          tip_name:=$(arg tip_name)
-          controller_box:=$(arg controller_box)"/>
+  <param name="robot_description_semantic" command="$(find xacro)/xacro --inorder $(find sawyer_moveit_config)/srdf/$(arg robot).srdf.xacro electric_gripper:=$(arg electric_gripper) tip_name:=$(arg tip_name) controller_box:=$(arg controller_box)"/>
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
     <rosparam command="load" file="$(find sawyer_moveit_config)/config/joint_limits.yaml"/>
